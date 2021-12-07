@@ -375,11 +375,14 @@ function update() {
             b.addEventListener('click', e => {
                 const id = e.target.title || e.target.parentElement.dataset.id; // lee el valor del atributo data-id del boton
                 const movie = Pmgr.resolve(id);
-                const formulario = document.querySelector("#movieViewForm");
+                const formulario = document.querySelector("#movieView");
                 for (let [k, v] of Object.entries(movie)) {
                     // rellenamos el formulario con los valores actuales
-                    const input = formulario.querySelector(`input[name="${k}"]`);
-                    if (input) input.value = v;
+                    const elem = formulario.querySelector(`${k === 'name' ? 'h5' : 'p'}[name="${k}"]`);
+                    if (elem) {
+                        const text = document.createTextNode(`${v}${k === 'minutes' ? ' minutos' : ''}`);
+                        elem.appendChild(text);
+                    }
                 }
                 modalViewMovie.show();
             })
