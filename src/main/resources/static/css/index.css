@@ -16,3 +16,31 @@
         background-position: 0% 50%;
     }
 }
+
+.content{
+    vertical-align: middle;
+    align-items: center;
+    width: 100vw;
+    padding-top: 10vh;
+}
+
+.container {
+    width: 400px;
+    height: 400px;
+    margin: 0%;
+    margin-left: 10vw;
+    margin-right: 5vw;
+}
+
+/* Resize images */
+.container img {
+    width: 100%;
+    height: auto;    
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    color:white;
+}
