@@ -96,9 +96,9 @@ function createMovieItem(movie) {
     ).join("");
 
     return `
-    <div class="card" data-id="${movie.id}" style="width: 18rem; min-height: 18rem; margin-bottom:20px;">
+    <div class="card pelicula" data-id="${movie.id}" style='background-image:url(${serverUrl}poster/${movie.imdb})'>
     <div class="card-header"">
-        <h4 class="mb-0" title="${movie.id}">
+        <h4 class="mb-0 titulopelic" title="${movie.id}">
             ${movie.name} <small><i>(${movie.year})</i></small>
         </h4>
     </div>
@@ -106,13 +106,10 @@ function createMovieItem(movie) {
     <div>
         <div class="card-body pcard">
             <div class="row">
-                <div class="col-auto">
-                    <img class="iuthumb" src="${serverUrl}poster/${movie.imdb}"/>
-                </div>
                 <div class="col">
-                    <div class="row-12">
+                    <div class="row-12 desc">
                         ${movie.director} / ${movie.actors} (${movie.minutes} min.)
-                    </div>        
+                    </div>      
                     <div class="row-12">
                         ${ratings}
                     </div>        

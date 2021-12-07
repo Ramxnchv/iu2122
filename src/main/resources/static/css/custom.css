@@ -24,6 +24,39 @@
     border-radius: 10px;
 }
 
+.titulopelic{
+    color: white;
+    text-shadow: 0px 2px 2px black;
+}
+
+.desc{
+    color: white;
+    text-shadow: 0px 1px 2px black;
+}
+
+.pelicula{
+    width: 18rem; 
+    min-height: 18rem; 
+    margin-bottom:20px;
+}
+
+.busc{
+    margin-top: 2.5%;
+    margin-bottom: 2.5%;
+    margin-right: 15%;
+    margin-left: 11%;
+}
+
+#movies{
+    width: 76%;
+    margin-left: 10%;
+}
+
+.titulo{
+    font-family: 'Patua One', cursive;
+    margin-right: 3%;
+}
+
 
 /** comienzo CSS para controles de estrellas */
 
