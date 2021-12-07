@@ -6,6 +6,9 @@ Servidor y código de plantilla para una interfaz de gestión de valoraciones de
 
 - Ramón Rosa
 - Pedro Martínez
+- Sergio Lorente
+- Beatriz Ortega
+- Julio Martínez
 
 ## Cambios realizados por nosotros
 
