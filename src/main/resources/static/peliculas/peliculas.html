@@ -7,15 +7,62 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="../css/bootstrap-5.1.3.css">
-    <link rel="stylesheet" href="../css/custom.css">
-    
+    <link rel="stylesheet" href="css/bootstrap-5.1.3.css">
+    <link rel="stylesheet" href="css/custom.css">
+    <link rel="stylesheet" href="css/index.css">
 
     <!-- Esto aparece como título de la ventana o pestaña en el navegador: cámbialo -->
     <title>Plantilla IU 2021-22</title>
 </head>
 
-<body>
+<body class="section-1-bg">
+    <!-- Modal para añadir una pelicula -->
+    <div class="modal fade" id="addMovie" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form id="addmovieform">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Añadir Pelicula</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+                            onclick="deleteFormData()"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" id="f1" name="name" placeholder="Título"
+                                    required>
+                            </div>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" id="f2" name="imdb"
+                                    placeholder="ID en IMDB (ej.: tt1234567)" required pattern="tt[0-9]+">
+                            </div>
+
+                            <div class="col-md-4">
+                                <input type="text" class="form-control" name="director" placeholder="Director" required>
+                            </div>
+                            <div class="col-md-8">
+                                <input type="text" class="form-control" name="actors" placeholder="Actores" required>
+                            </div>
+
+                            <div class="col-md-4">
+                                <input type="number" class="form-control" name="year" placeholder="Año de estreno"
+                                    min="1800" max="2022" required>
+                            </div>
+                            <div class="col-md-8">
+                                <input type="number" class="form-control" name="minutes"
+                                    placeholder="Duración en minutos" min="0" max="600" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">Añadir</button>
+                        <button class="btn btn-info generar" type="button">Generar</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="deleteFormData()">Cancelar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 
     <!-- Modal para dar un rating a una película -->
     <div class="modal fade" id="movieRate" tabindex="-1" aria-labelledby="movieRateLabel" aria-hidden="true">
@@ -37,24 +84,24 @@
                         <div class="col-md-6">
                             <fieldset class="estrellitas">
                                 <label title="Atómico - 5 estrellas">
-                                        <input type="radio" name="rating" value="5" />
-                                    </label>
+                                    <input type="radio" name="rating" value="5" />
+                                </label>
 
                                 <label title="Muy buena - 4 estrellas">
-                                        <input type="radio" name="rating" value="4" />
-                                    </label>
+                                    <input type="radio" name="rating" value="4" />
+                                </label>
 
                                 <label title="Pasable - 3 estrellas">
-                                        <input type="radio" name="rating" value="3" />
-                                    </label>
+                                    <input type="radio" name="rating" value="3" />
+                                </label>
 
                                 <label title="Más bien mala - 2 estrellas">
-                                        <input type="radio" name="rating" value="2" />
-                                    </label>
+                                    <input type="radio" name="rating" value="2" />
+                                </label>
 
                                 <label title="Horrible - 1 estrella">
-                                        <input type="radio" name="rating" value="1" />
-                                    </label>
+                                    <input type="radio" name="rating" value="1" />
+                                </label>
                             </fieldset>
                         </div>
                         <button style="display: none" type="submit">Invisible, sólo para validación</button>
@@ -84,7 +131,8 @@
                             <input type="text" class="form-control" name="name" placeholder="Título" required>
                         </div>
                         <div class="col-md-6">
-                            <input type="text" class="form-control" name="imdb" placeholder="ID en IMDB (ej.: tt1234567)" required pattern="tt[0-9]+">
+                            <input type="text" class="form-control" name="imdb"
+                                placeholder="ID en IMDB (ej.: tt1234567)" required pattern="tt[0-9]+">
                         </div>
 
                         <div class="col-md-4">
@@ -95,10 +143,12 @@
                         </div>
 
                         <div class="col-md-4">
-                            <input type="number" class="form-control" name="year" placeholder="Año de estreno" min="1800" max="2022" required>
+                            <input type="number" class="form-control" name="year" placeholder="Año de estreno"
+                                min="1800" max="2022" required>
                         </div>
                         <div class="col-md-8">
-                            <input type="number" class="form-control" name="minutes" placeholder="Duración en minutos" min="0" max="600" required>
+                            <input type="number" class="form-control" name="minutes" placeholder="Duración en minutos"
+                                min="0" max="600" required>
                         </div>
                         <button style="display: none" type="submit">Invisible, sólo para validación</button>
                     </form>
@@ -115,30 +165,34 @@
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
             <!-- nombre del sitio; es un enlace que lleva a la página ppal -->
-            <a class="navbar-brand" href="../index.html">Afinidad de películas</a>
+            <a class="navbar-brand" href="./index.html">Afinidad de películas</a>
             <!-- menu hamburguesa si no cabe todo -->
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle active" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle active" href="#" id="navbarDropdown" role="button"
+                            data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Películas
                         </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown"> 
-                            <a class="dropdown-item" href="./peliculas.html">Ver todas las películas</a>
-                            <a class="dropdown-item" href="./anadirPelicula.html">Añadir películas</a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="./peliculas/peliculas.html">Ver todas las películas</a>
+                            <a class="dropdown-item" onclick="addMovieModal()">Añadir películas</a>
                         </div>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle active" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle active" href="#" id="navbarDropdown" role="button"
+                            data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Grupos
                         </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown"> 
-                            <a class="dropdown-item" href="../grupos/grupos.html">Ver grupos</a>
-                            <a class="dropdown-item" href="../grupos/anadirGrupos.html">Crear grupo</a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="./grupos/grupos.html">Ver grupos</a>
+                            <a class="dropdown-item" href="./grupos/anadirGrupos.html">Crear grupo</a>
                         </div>
                     </li>
                 </ul>
@@ -146,7 +200,7 @@
         </div>
     </nav>
 
-     <!-- container-fluid expande el contenedor para que ocupe todo el espacio disponible -->
+    <!-- container-fluid expande el contenedor para que ocupe todo el espacio disponible -->
     <div class="container-fluid mt-3">
         <div class="row">
             <!-- panel lateral, demostrando acordeones (secciones expansibles) -->
@@ -156,106 +210,112 @@
                         <h2>Peliculas </h2>
                     </div>
                     <div class="col input-group mb-3">
-                        <input type="search" class="form-control" id="movieSearch" placeholder="palabras del título" aria-describedby="searchMovieLabel">
+                        <input type="search" class="form-control" id="movieSearch" placeholder="palabras del título"
+                            aria-describedby="searchMovieLabel">
                         <span class="input-group-text" id="searchMovieLabel">🔍</span>
                     </div>
                 </div>
                 <div class="accordion" id="movies">
                 </div>
-                <div id="addMovie" class="formularioValidado">
-                    <h3>Añadir película</h3>
-                    <form class="row">
-                        <div class="col-md-6">
-                            <input type="text" class="form-control" id="f1" name="name" placeholder="Título" required>
-                        </div>
-                        <div class="col-md-6">
-                            <input type="text" class="form-control" id="f2" name="imdb" placeholder="ID en IMDB (ej.: tt1234567)" required pattern="tt[0-9]+">
-                        </div>
-
-                        <div class="col-md-4">
-                            <input type="text" class="form-control" name="director" placeholder="Director" required>
-                        </div>
-                        <div class="col-md-8">
-                            <input type="text" class="form-control" name="actors" placeholder="Actores" required>
-                        </div>
-
-                        <div class="col-md-4">
-                            <input type="number" class="form-control" name="year" placeholder="Año de estreno" min="1800" max="2022" required>
-                        </div>
-                        <div class="col-md-8">
-                            <input type="number" class="form-control" name="minutes" placeholder="Duración en minutos" min="0" max="600" required>
-                        </div>
-
-                        <div class="col-12 botones">
-                            <button class="btn btn-primary" type="submit">Añadir</button>
-                            <button class="btn btn-secondary generar" type="button">Generar</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        <hr>
-        <div class="row">
-            <div class="col-sm-8 anuncio">
-                <h2>Ejemplo de formulario con validación y menú emergente</h2>
-                <form method="post" id="form-anuncio">
-                    <div class="form-row datos-anuncio">
-                        <div class="form-group col-md-6">
-                            <label for="inputTitulo">Título del anuncio</label>
-                            <input type="text" class="form-control" id="inputTitulo" placeholder="Vendo Moto" required>
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label for="inputCategorias">Categorías</label>
-                            <div class="input-group">
-                                <input type="text" class="form-control" readonly id="inputCategorias" placeholder="(ninguna)">
-                                <div class="input-group-append">
-                                    <button class="btn btn-outline-secondary" type="button" data-bs-toggle="modal" data-bs-target="#modalSeleccionCategoria">
-                                        Cambiar
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-row texto-anuncio">
-                        <div class="form-group col">
-                            <label for="inputTextoAnuncio">Cuerpo del
-                                anuncio</label>
-                            <textarea id="inputTextoAnuncio" class="form-control">
-                                Hello, World!
-                            </textarea>
-                        </div>
-                    </div>
-                    <!-- botón para enviar el formulario; justify-content-end lo justifica a la derecha -->
-                    <div class="form-row justify-content-end">
-                        <button type="submit" id="boton-publicar" class="btn btn-primary">Publicar anuncio
-                        </button>
-                    </div>
-                </form>
             </div>
 
-            <div id="dropdownBuscablePelis" class="form-group col-md-4">
-                <h2>Ejemplo de dropdown con peliculas</h2>
-                <div class="row-md-4">
-                    <input id="busqueda" type="search" class="form-control" placeholder="Filtrar por titulo" />
+            <div class="col-sm-4 iulist">
+                <h2>Grupos</h2>
+                <div id="groups">
+
                 </div>
-                <div class="row-md-4">
-                    <select class="multiple from-control" multiple size="6">
-                        <option value="a">a</option>
-                        <option value="b">b</option>
-                    </select>
+                <div id="addGroup">
+
                 </div>
             </div>
 
+            <div class="col-sm-4 iulist">
+                <h2>Usuarios</h2>
+                <div id="users">
+
+                </div>
+                <div id="addUser">
+
+                </div>
+            </div>
         </div>
     </div>
 
-    <!-- JavaScript -->
+    <!-- Modal de selección de categorías (lanzado por un botón) -->
+    <div class="modal fade" id="modalSeleccionCategoria" tabindex="-1" role="dialog"
+        aria-labelledby="tituloModalCategorias" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="tituloModalCategorias">Selección de Categorías de Anuncio</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <ul class="list-group" id="lista-categorias">
+                        <li class="list-group-item d-flex justify-content-between align-items-center" id="vehiculos">
+                            Vehículos
+                            <span class="badge bg-primary badge-pill">14</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center" id="gangas">
+                            Gangas
+                            <span class="badge bg-primary badge-pill">2</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center" id="vintage">
+                            Vintage
+                            <span class="badge bg-primary badge-pill">1</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center" id="cat-larga">
+                            Otra categoría
+                            <span class="badge bg-primary badge-pill">2</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center" id="cat-muylarga">
+                            Otra categoría
+                            <span class="badge bg-primary badge-pill">2</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center"
+                            id="cat-maslargatodavia">
+                            Otra categoría
+                            <span class="badge bg-primary badge-pill">2</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar
+                    </button>
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal" id="button-save-cats">Guardar
+                        y
+                        salir
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            Launch demo modal
+        </button>
 
-    <!-- Bootstrap -->
-    <script src="../js/bootstrap.bundle-5.1.3.js"></script>
+        v>
 
-    <!-- todos los scripts de interaccion, aqui -->
-    <script src="../js/pmgr.js" type="module"></script>
-    
+        <!-- JavaScript -->
+        <script>
+            function addMovieModal() {
+                var myModalEl = document.getElementById('addMovie')
+                var modal = bootstrap.Modal.getOrCreateInstance(myModalEl)
+                modal.show();
+            }
+            function deleteFormData(){
+                var myForm = document.getElementById('addmovieform')
+                myForm.reset()
+            }
+        </script>
+
+        <!-- Bootstrap -->
+        <script src="js/bootstrap.bundle-5.1.3.js"></script>
+
+        <!-- todos los scripts de interaccion, aqui -->
+        <script src="js/pmgr.js" type="module"></script>
+
 </body>
 
 </html>
