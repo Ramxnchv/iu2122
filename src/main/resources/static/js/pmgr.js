@@ -579,7 +579,7 @@ login("p", "p");
     stars("#movieRateForm .estrellitas");
 }{ /**
     * formulario nuevo grupo **/
-   const f = document.querySelection("#addGroup form");
+   const f = document.querySelector("#addGroup form");
    //botón de enviar
     f.querySelector("button[type='submitG']").addEventListener('click', (e) => {
         if (f.checkValidity()) {
