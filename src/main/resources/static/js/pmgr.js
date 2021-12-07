@@ -237,6 +237,26 @@ function modificaPelicula(formulario) {
 }
 
 /**
+ * Usa valores de un formulario para modificar una película
+ * @param {Element} formulario para con los valores a subir
+ */
+function vePelicula(formulario) {
+    const movie = new Pmgr.Movie(
+        formulario.querySelector('input[name="id"]').value,
+        formulario.querySelector('input[name="imdb"]').value,
+        formulario.querySelector('input[name="name"]').value,
+        formulario.querySelector('input[name="director"]').value,
+        formulario.querySelector('input[name="actors"]').value,
+        formulario.querySelector('input[name="year"]').value,
+        formulario.querySelector('input[name="minutes"]').value)
+    Pmgr.setMovie(movie).then(() => {
+        formulario.reset() // limpia el formulario si todo OK
+        modalViewMovie.hide(); // oculta el formulario
+        update();
+    }).catch(e => console.log(e));
+}
+
+/**
  * Usa valores de un formulario para añadir un rating
  * @param {Element} formulario para con los valores a subir
  */
@@ -351,6 +371,19 @@ function update() {
         Pmgr.state.users.forEach(o => appendTo("#users", createUserItem(o)));
 
         // y añadimos manejadores para los eventos de los elementos recién creados
+        document.querySelectorAll(".card.pelicula").forEach(b => {
+            b.addEventListener('click', e => {
+                const id = e.target.title || e.target.parentElement.dataset.id; // lee el valor del atributo data-id del boton
+                const movie = Pmgr.resolve(id);
+                const formulario = document.querySelector("#movieViewForm");
+                for (let [k, v] of Object.entries(movie)) {
+                    // rellenamos el formulario con los valores actuales
+                    const input = formulario.querySelector(`input[name="${k}"]`);
+                    if (input) input.value = v;
+                }
+                modalViewMovie.show();
+            })
+        });
         // botones de borrar películas
         document.querySelectorAll(".iucontrol.movie button.rm").forEach(b =>
             b.addEventListener('click', e => {
@@ -432,6 +465,7 @@ function update() {
 
 // modales, para poder abrirlos y cerrarlos desde código JS
 const modalEditMovie = new bootstrap.Modal(document.querySelector('#movieEdit'));
+const modalViewMovie = new bootstrap.Modal(document.querySelector('#movieView'));
 const modalRateMovie = new bootstrap.Modal(document.querySelector('#movieRate'));
 
 // si lanzas un servidor en local, usa http://localhost:8080/
@@ -527,6 +561,7 @@ document.querySelector("#movieSearch").addEventListener("input", e => {
 
 // cosas que exponemos para poder usarlas desde la consola
 window.modalEditMovie = modalEditMovie;
+window.modalViewMovie = modalViewMovie;
 window.modalRateMovie = modalRateMovie;
 window.update = update;
 window.login = login;
