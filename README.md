@@ -51,6 +51,10 @@ Ahora los grupos se crean a través de un modal, es decir, no hay una página en
 
 Hemos cambiado la forma en la que se muestran las películas. Ahora se muestran mediante tarjetas. Esto favorece que el usuario vea la información más claramente.
 
+### Ver película
+
+Al hacer clic sobre una película, abre un modal con la información de la misma.
+
 ## Práctica
 
 Implementa la interfaz que propusiste en tu Práctica 5 (Diseño de una GUI) usando Boostrap 5, *sin* JQuery. Tendrás que usar
