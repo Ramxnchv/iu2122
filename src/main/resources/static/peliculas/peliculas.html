@@ -52,6 +52,36 @@
         </div>
     </div>
 
+    <div class="modal fade" id="addGroup" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <form id="addgroupform">
+                    <div class="modal-header">
+                        <h5 class="modal-title" style="color:black" id="exampleModalLabel">Crear Grupo</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+                            onclick="deleteFormDataGroup()"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" id="f1" name="name" placeholder="Título"
+                                    required>
+                            </div>
+                            <div class="col-md-6">
+                                <textarea type="text" class="form-control" id="f2" name="desc"placeholder="Descripción" required></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submitG" class="btn btn-primary">Añadir</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
+                            onclick="deleteFormDataGroup()">Cancelar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
     <!-- Modal para dar un rating a una película -->
     <div class="modal fade" id="movieRate" tabindex="-1" aria-labelledby="movieRateLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -209,8 +239,8 @@
                             Películas
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="peliculas.html">Ver todas las películas</a>
-                            <a class="dropdown-item enl" onclick="addMovieModal()">Añadir películas</a>
+                            <a class="dropdown-item" href="../peliculas/peliculas.html">Ver todas las películas</a>
+                            <a class="dropdown-item" onclick="addMovieModal()">Añadir películas</a>
                         </div>
                     </li>
                     <li class="nav-item dropdown">
@@ -219,15 +249,14 @@
                             Grupos
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="./grupos/grupos.html">Ver grupos</a>
-                            <a class="dropdown-item" href="./grupos/anadirGrupos.html">Crear grupo</a>
+                            <a class="dropdown-item" href="../grupos/grupos.html">Ver grupos</a>
+                            <a class="dropdown-item" onclick="addGroupModal()">Crear grupo</a>
                         </div>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
-
     <!-- container-fluid expande el contenedor para que ocupe todo el espacio disponible -->
     <div class="container-fluid mt-3">
         <div class="row">
@@ -332,8 +361,17 @@
                 var modal = bootstrap.Modal.getOrCreateInstance(myModalEl)
                 modal.show();
             }
-            function deleteFormData(){
+            function deleteFormData() {
                 var myForm = document.getElementById('addmovieform')
+                myForm.reset()
+            }
+            function addGroupModal() {
+                var myModalEl = document.getElementById('addGroup')
+                var modal = bootstrap.Modal.getOrCreateInstance(myModalEl)
+                modal.show();
+            }
+            function deleteFormDataGroup() {
+                var myForm = document.getElementById('addgroupform')
                 myForm.reset()
             }
         </script>

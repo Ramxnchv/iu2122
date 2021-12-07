@@ -132,6 +132,7 @@ function createMovieItem(movie) {
 }
 
 function createGroupItem(group) {
+    console.log(group);
     let allMembers = group.members.map((id) =>
         `<span class="badge bg-secondary">${Pmgr.resolve(id).username}</span>`
     ).join(" ");
@@ -214,6 +215,16 @@ function nuevaPelicula(formulario) {
         formulario.reset() // limpia el formulario si todo OK
         update();
     });
+}
+
+function nuevoGrupo(formulario){
+    const group = new Pmgr.group(-1,
+        formulario.querySelector('input[name="name"]').value,
+        formulario.querySelector('input[name="desc"]').value);
+    Pmgr.addGroup(group).then(() => {
+        formulario.reset();
+        update();
+    })
 }
 
 /**
@@ -368,6 +379,7 @@ function update() {
         // y los volvemos a rellenar con su nuevo contenido
         Pmgr.state.movies.forEach(o => appendTo("#movies", createMovieItem(o)));
         Pmgr.state.groups.forEach(o => appendTo("#groups", createGroupItem(o)));
+        console.log(Pmgr.state.groups);
         Pmgr.state.users.forEach(o => appendTo("#users", createUserItem(o)));
 
         // y añadimos manejadores para los eventos de los elementos recién creados
@@ -565,6 +577,16 @@ login("p", "p");
     });
     // activa rating con estrellitas
     stars("#movieRateForm .estrellitas");
+}{ /**
+    * formulario nuevo grupo **/
+   const f = document.querySelection("#addGroup form");
+   //botón de enviar
+    f.querySelector("button[type='submitG']").addEventListener('click', (e) => {
+        if (f.checkValidity()) {
+            e.preventDefault(); // evita que se haga lo normal cuando no hay errores
+            nuevoGrupo(f); // añade la pelicula según los campos previamente validados
+        }
+    });
 }
 
 /**
