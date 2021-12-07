@@ -9,6 +9,7 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="css/bootstrap-5.1.3.css">
     <link rel="stylesheet" href="css/custom.css">
+    
 
     <!-- Esto aparece como título de la ventana o pestaña en el navegador: cámbialo -->
     <title>Plantilla IU 2021-22</title>
@@ -111,10 +112,10 @@
     </div>
 
     <!-- barra de navegación -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
             <!-- nombre del sitio; es un enlace que lleva a la página ppal -->
-            <a class="navbar-brand" href="#">IU 2021-22</a>
+            <a class="navbar-brand" href="./index.html">Afinidad de películas</a>
             <!-- menu hamburguesa si no cabe todo -->
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -122,25 +123,25 @@
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Link</a>
-                    </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Dropdown
+                        <a class="nav-link dropdown-toggle active" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Películas
                         </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="#">Action</a>
-                            <a class="dropdown-item" href="#">Another action</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">Something else here</a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown"> 
+                            <a class="dropdown-item" href="#">Ver todas las películas</a>
+                            <a class="dropdown-item" href="#">Añadir películas</a>
                         </div>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle active" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Grupos
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown"> 
+                            <a class="dropdown-item" href="#">Ver catálogo de películas</a>
+                            <a class="dropdown-item" href="#">Añadir películas</a>
+                            <a class="dropdown-item" href="#">Modificar películas</a>
+                            <a class="dropdown-item" href="#">Borrar películas</a>
+                        </div>
                     </li>
                 </ul>
             </div>
@@ -148,7 +149,7 @@
     </nav>
 
     <!-- container-fluid expande el contenedor para que ocupe todo el espacio disponible -->
-    <div class="container-fluid">
+    <div class="container-fluid mt-3">
         <div class="row">
             <!-- panel lateral, demostrando acordeones (secciones expansibles) -->
             <div class="col-sm-4 iulist">
@@ -242,8 +243,8 @@
                             <label for="inputTextoAnuncio">Cuerpo del
                                 anuncio</label>
                             <textarea id="inputTextoAnuncio" class="form-control">
-Hello, World!
-                </textarea>
+                                Hello, World!
+                            </textarea>
                         </div>
                     </div>
                     <!-- botón para enviar el formulario; justify-content-end lo justifica a la derecha -->
@@ -330,7 +331,7 @@ Hello, World!
 
     <!-- todos los scripts de interaccion, aqui -->
     <script src="js/pmgr.js" type="module"></script>
-
+    
 </body>
 
 </html>
