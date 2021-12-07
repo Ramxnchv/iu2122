@@ -378,10 +378,28 @@ function update() {
                 const formulario = document.querySelector("#movieView");
                 for (let [k, v] of Object.entries(movie)) {
                     // rellenamos el formulario con los valores actuales
-                    const elem = formulario.querySelector(`${k === 'name' ? 'h5' : 'p'}[name="${k}"]`);
+                    const selector = k === 'name'
+                        ? 'h5'
+                        : k === 'imdb'
+                            ? 'a'
+                            : 'p';
+                    const elem = formulario.querySelector(`${selector}[name="${k}"]`);
                     if (elem) {
-                        const text = document.createTextNode(`${v}${k === 'minutes' ? ' minutos' : ''}`);
-                        elem.appendChild(text);
+                        let text = v;
+                        switch (k) {
+                            case 'minutes':
+                                text += ' minutos';
+                                break;
+                            case 'imdb':
+                                text = `https://www.imdb.com/title/${text}`;
+                                break;
+                            default:
+                                break;
+                        }
+                        elem.textContent = text;
+                        if (selector === 'a') {
+                            elem.href = text;
+                        }
                     }
                 }
                 modalViewMovie.show();
