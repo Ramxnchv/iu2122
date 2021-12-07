@@ -2,6 +2,48 @@
 
 Servidor y código de plantilla para una interfaz de gestión de valoraciones de películas, a usar para las prácticas de la asignatura *Interfaces de Usuario* de los grados de Informática de la Universidad Complutense, en su edición 2021-22.
 
+## Participantes
+
+- Ramón Rosa
+- Pedro Martínez
+
+## Cambios realizados por nosotros
+
+### index.html
+
+Esta es la página web principal. En ella se hace un breve resumen sobre la utilidad de la aplicación. 
+
+### Header
+
+Hemos modificado el header, en concreto los dropdowns que se muestran en cada uno de los apartados.
+Anteriormente se mostraban de la siguiente forma:
+- Películas
+  - Añadir película
+  - Borrar película
+  - Modificar película
+  - Ver catálogo
+  - Buscar película por
+- Grupos
+
+Hemos eliminado varios submenús y añadidos otros ahora se muestran de la siguiente forma:
+
+- Películas
+  - Ver todas las películas
+  - Añadir películas
+- Grupos
+  - Ver grupos
+  - Crear grupo
+
+Esto lo hemos hecho debido a que el resto de campos no eran necesarios, ya que se puede acceder a ellos de forma más intuitiva, por ejemplo al estar viendo una película en concreto. 
+
+### Añadir película
+
+Ahora las películas se añaden a través de un modal, es decir, no hay una página en concreto para añairla. Al modal se puede acceder a través del header. 
+
+### Crear grupo
+
+Ahora los grupos se crean a través de un modal, es decir, no hay una página en concreto para crearlos. Al modal se puede acceder a través del header. 
+
 ## Práctica
 
 Implementa la interfaz que propusiste en tu Práctica 5 (Diseño de una GUI) usando Boostrap 5, *sin* JQuery. Tendrás que usar
@@ -29,4 +71,6 @@ La aplicación de servidor funciona con Spring Boot, y puedes lanzarla en local 
 - Contraseñas y contenido inicial de la BD: [import.sql](https://github.com/manuel-freire/iu2122/blob/main/src/main/resources/import.sql)
 
 *El profesor proporcionará un servidor (con configuración cambiada con respecto a la anterior) que permanecerá encendido hasta el fin de las prácticas de la asignatura. Lanzar o no otro servidor en local, o jugar con el codigo, es completamente opcional. Ver [licencia](https://github.com/manuel-freire/iu2122/blob/main/LICENSE)*
+
+
 
