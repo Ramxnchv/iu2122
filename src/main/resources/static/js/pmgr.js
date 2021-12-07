@@ -97,13 +97,14 @@ function createMovieItem(movie) {
 
     return `
     <div class="card pelicula" data-id="${movie.id}" style='background-image:url(${serverUrl}poster/${movie.imdb})'>
-    <div class="card-header"">
+
+    <div class="card-header mt-2">
         <h4 class="mb-0 titulopelic" title="${movie.id}">
             ${movie.name} <small><i>(${movie.year})</i></small>
         </h4>
     </div>
 
-    <div>
+    
         <div class="card-body pcard">
             <div class="row">
                 <div class="col">
@@ -112,16 +113,20 @@ function createMovieItem(movie) {
                     </div>      
                     <div class="row-12">
                         ${ratings}
-                    </div>        
-                    <div class="iucontrol movie">
-                        <button class="rm" data-id="${movie.id}">🗑️</button>
-                        <button class="edit" data-id="${movie.id}">✏️</button>
-                        <button class="rate" data-id="${movie.id}">⭐</button>
-                    </div>  
+                    </div>
                 </div>
             </div>
         </div>
+    
+
+    <div class="card-footer d-flex justify-content-end mb-2">
+        <div class="iucontrol movie d-flex justify-content-end">
+            <button class="bot rm" data-id="${movie.id}">🗑️</button>
+            <button class="bot edit" data-id="${movie.id}">✏️</button>
+            <button class="bot rate" data-id="${movie.id}">⭐</button>
+        </div>  
     </div>
+
     </div>
  `;
 }
