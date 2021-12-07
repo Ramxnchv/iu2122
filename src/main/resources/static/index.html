@@ -17,7 +17,53 @@
 </head>
 
 <body class="section-1-bg">
+    <div class="modal fade" id="addMovie" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <form id="addmovieform">
+                    <div class="modal-header">
+                        <h5 class="modal-title" style="color:black" id="exampleModalLabel">Añadir Pelicula</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+                            onclick="deleteFormData()"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" id="f1" name="name" placeholder="Título"
+                                    required>
+                            </div>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" id="f2" name="imdb"
+                                    placeholder="ID en IMDB (ej.: tt1234567)" required pattern="tt[0-9]+">
+                            </div>
 
+                            <div class="col-md-4">
+                                <input type="text" class="form-control" name="director" placeholder="Director" required>
+                            </div>
+                            <div class="col-md-8">
+                                <input type="text" class="form-control" name="actors" placeholder="Actores" required>
+                            </div>
+
+                            <div class="col-md-4">
+                                <input type="number" class="form-control" name="year" placeholder="Año de estreno"
+                                    min="1800" max="2022" required>
+                            </div>
+                            <div class="col-md-8">
+                                <input type="number" class="form-control" name="minutes"
+                                    placeholder="Duración en minutos" min="0" max="600" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">Añadir</button>
+                        <button class="btn btn-info generar" type="button">Generar</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
+                            onclick="deleteFormData()">Cancelar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 
     <!-- barra de navegación -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -64,8 +110,9 @@
         </div>
         <div id="info" class="col-7 text">
             <h1>Bienvenido a Afinidad de películas</h1>
-            <p>Afinidad de películas es una aplicación diseñada para gestionar películas, con sus respectivas valoraciones.</br> 
-            Además podrás crear grupos con más usuarios para descubrir nuevas películas.</p>
+            <p>Afinidad de películas es una aplicación diseñada para gestionar películas, con sus respectivas
+                valoraciones.</br>
+                Además podrás crear grupos con más usuarios para descubrir nuevas películas.</p>
         </div>
     </div>
 
@@ -77,26 +124,25 @@
         <!-- Copyright -->
     </footer>
 
-        v>
 
-        <!-- JavaScript -->
-        <script>
-            function addMovieModal() {
-                var myModalEl = document.getElementById('addMovie')
-                var modal = bootstrap.Modal.getOrCreateInstance(myModalEl)
-                modal.show();
-            }
-            function deleteFormData(){
-                var myForm = document.getElementById('addmovieform')
-                myForm.reset()
-            }
-        </script>
+    <!-- JavaScript -->
+    <script>
+        function addMovieModal() {
+            var myModalEl = document.getElementById('addMovie')
+            var modal = bootstrap.Modal.getOrCreateInstance(myModalEl)
+            modal.show();
+        }
+        function deleteFormData() {
+            var myForm = document.getElementById('addmovieform')
+            myForm.reset()
+        }
+    </script>
 
-        <!-- Bootstrap -->
-        <script src="js/bootstrap.bundle-5.1.3.js"></script>
+    <!-- Bootstrap -->
+    <script src="js/bootstrap.bundle-5.1.3.js"></script>
 
-        <!-- todos los scripts de interaccion, aqui -->
-        <script src="js/pmgr.js" type="module"></script>
+    <!-- todos los scripts de interaccion, aqui -->
+    <script src="js/pmgr.js" type="module"></script>
 
 </body>
 

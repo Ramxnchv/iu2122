@@ -96,7 +96,7 @@ function createMovieItem(movie) {
     ).join("");
 
     return `
-    <div class="card" data-id="${movie.id}">
+    <div class="card" data-id="${movie.id}" style="width: 18rem; min-height: 18rem; margin-bottom:20px;">
     <div class="card-header"">
         <h4 class="mb-0" title="${movie.id}">
             ${movie.name} <small><i>(${movie.year})</i></small>
