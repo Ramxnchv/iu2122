@@ -96,7 +96,7 @@ function createMovieItem(movie) {
     ).join("");
 
     return `
-    <div class="card pelicula" data-id="${movie.id}" style='background-image:url(${serverUrl}poster/${movie.imdb})'>
+    <div class="card pelicula" data-id="${movie.id}" title="${movie.id}" style='background-image:url(${serverUrl}poster/${movie.imdb})'>
 
     <div class="card-header mt-2">
         <h4 class="mb-0 titulopelic" title="${movie.id}">
