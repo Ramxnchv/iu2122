@@ -25,11 +25,7 @@
 }
 
 .container {
-    width: 400px;
-    height: 400px;
-    margin: 0%;
-    margin-left: 10vw;
-    margin-right: 5vw;
+    margin-left: 5%;
 }
 
 /* Resize images */
