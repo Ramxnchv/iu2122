@@ -107,6 +107,14 @@
     margin-right: 3%;
 }
 
+.nav-item a{
+    color: white;
+    cursor: pointer;
+    margin-left: 1em;
+    margin-right: 1em;
+    text-decoration: none;
+}
+
 
 /** comienzo CSS para controles de estrellas */
 
