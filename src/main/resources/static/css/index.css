@@ -22,10 +22,7 @@
     align-items: center;
     width: 100vw;
     padding-top: 10vh;
-}
-
-.container {
-    margin-left: 5%;
+    padding-left:5%;
 }
 
 /* Resize images */
@@ -40,3 +37,5 @@ footer {
     width: 100%;
     color:white;
 }
+
+
