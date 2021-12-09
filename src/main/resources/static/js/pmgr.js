@@ -248,26 +248,6 @@ function modificaPelicula(formulario) {
 }
 
 /**
- * Usa valores de un formulario para modificar una película
- * @param {Element} formulario para con los valores a subir
- */
-function vePelicula(formulario) {
-    const movie = new Pmgr.Movie(
-        formulario.querySelector('input[name="id"]').value,
-        formulario.querySelector('input[name="imdb"]').value,
-        formulario.querySelector('input[name="name"]').value,
-        formulario.querySelector('input[name="director"]').value,
-        formulario.querySelector('input[name="actors"]').value,
-        formulario.querySelector('input[name="year"]').value,
-        formulario.querySelector('input[name="minutes"]').value)
-    Pmgr.setMovie(movie).then(() => {
-        formulario.reset() // limpia el formulario si todo OK
-        modalViewMovie.hide(); // oculta el formulario
-        update();
-    }).catch(e => console.log(e));
-}
-
-/**
  * Usa valores de un formulario para añadir un rating
  * @param {Element} formulario para con los valores a subir
  */
@@ -379,8 +359,16 @@ function update() {
         // y los volvemos a rellenar con su nuevo contenido
         Pmgr.state.movies.forEach(o => appendTo("#movies", createMovieItem(o)));
         Pmgr.state.groups.forEach(o => appendTo("#groups", createGroupItem(o)));
-        console.log(Pmgr.state.groups);
         Pmgr.state.users.forEach(o => appendTo("#users", createUserItem(o)));
+
+        const helloUser = document.getElementById('helloUser');
+        const loginItem = document.getElementById('loginItem');
+        const islogged = userId !== -1;
+        if (islogged) {
+            helloUser.textContent = `Holi ${Pmgr.state.name}`;
+        }
+        helloUser.style.visibility = islogged ? 'visible' : 'hidden';
+        loginItem.style.visibility = !islogged ? 'visible' : 'hidden';
 
         // y añadimos manejadores para los eventos de los elementos recién creados
         document.querySelectorAll(".card.pelicula").forEach(b => {
@@ -481,14 +469,14 @@ function update() {
         console.log('Error actualizando', e);
     }
 
-    /* para que siempre muestre los últimos elementos disponibles */
+    /* para que siempre muestre los últimos elementos disponibles
     activaBusquedaDropdown('#dropdownBuscablePelis',
         (select) => {
             empty(select);
             Pmgr.state.movies.forEach(m =>
                 appendTo(select, `<option value="${m.id}">${m.name}</option>`));
         }
-    );
+    );*/
 }
 
 //
@@ -497,6 +485,7 @@ function update() {
 //
 
 // modales, para poder abrirlos y cerrarlos desde código JS
+const modalLogin = new bootstrap.Modal(document.querySelector('#login'));
 const modalEditMovie = new bootstrap.Modal(document.querySelector('#movieEdit'));
 const modalViewMovie = new bootstrap.Modal(document.querySelector('#movieView'));
 const modalRateMovie = new bootstrap.Modal(document.querySelector('#movieRate'));
@@ -512,9 +501,9 @@ const login = (username, password) => {
     Pmgr.login(username, password) // <-- tu nombre de usuario y password aquí
         .then(d => {
             console.log("login ok!", d);
-            update(d);
-            userId = Pmgr.state.users.find(u =>
-                u.username == username).id;
+            userId = Pmgr.state.users.find(u =>  u.username == username).id; 
+            update(d);   
+            modalLogin.hide();
         })
         .catch(e => {
             console.log(e, `error ${e.status} en login (revisa la URL: ${e.url}, y verifica que está vivo)`);
@@ -522,9 +511,35 @@ const login = (username, password) => {
         });
 }
 
-login("p", "p");
-
 {
+    /** 
+     * Asocia comportamientos al botón de login 
+     * en un bloque separado para que las constantes y variables no salgan de aquí, 
+     * manteniendo limpio el espacio de nombres del fichero
+     */
+    const a = document.querySelector("#loginItem a");
+    a.addEventListener('click', (e) => {
+        e.preventDefault(); // evita que se haga lo normal cuando no hay errores
+        modalLogin.show();
+    });
+} {
+    /** 
+     * Asocia comportamientos al formulario de login 
+     * en un bloque separado para que las constantes y variables no salgan de aquí, 
+     * manteniendo limpio el espacio de nombres del fichero
+     */
+    const f = document.querySelector("#login form");
+    // botón de enviar
+    f.querySelector("button[type='submit']").addEventListener('click', (e) => {
+        if (f.checkValidity()) {
+            e.preventDefault(); // evita que se haga lo normal cuando no hay errores
+            const username = f.querySelector('input[name="username"]').value;
+            const password = f.querySelector('input[name="password"]').value;
+            console.log('login', username, password);
+            login(username, password); // añade la pelicula según los campos previamente validados
+        }
+    });
+} {
     /** 
      * Asocia comportamientos al formulario de añadir películas 
      * en un bloque separado para que las constantes y variables no salgan de aquí, 

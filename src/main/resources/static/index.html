@@ -18,6 +18,121 @@
 </head>
 
 <body class="section-1-bg">
+    <div class="modal fade" id="login" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <form id="loginform">
+                    <div class="modal-header">
+                        <h5 class="modal-title" style="color:black" id="exampleModalLabel">Iniciar Sesión</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"/>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <input type="text" class="form-control" name="username" placeholder="Usuario"
+                                    required>
+                            </div>
+                            <div class="col-md-12">
+                                <input type="text" class="form-control" name="password"
+                                    placeholder="Contraseña" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">Iniciar sesión</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para editar películas -->
+    <div class="modal fade" id="movieEdit" tabindex="-1" aria-labelledby="movieEditLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="movieEditLabel">Editando película</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form class="row" id="movieEditForm">
+                        <input type="hidden" name="id">
+                        <!-- llenar desde JS -->
+                        <div class="col-md-6">
+                            <input type="text" class="form-control" name="name" placeholder="Título" required>
+                        </div>
+                        <div class="col-md-6">
+                            <input type="text" class="form-control" name="imdb"
+                                placeholder="ID en IMDB (ej.: tt1234567)" required pattern="tt[0-9]+">
+                        </div>
+
+                        <div class="col-md-4">
+                            <input type="text" class="form-control" name="director" placeholder="Director" required>
+                        </div>
+                        <div class="col-md-8">
+                            <input type="text" class="form-control" name="actors" placeholder="Actores" required>
+                        </div>
+
+                        <div class="col-md-4">
+                            <input type="number" class="form-control" name="year" placeholder="Año de estreno"
+                                min="1800" max="2022" required>
+                        </div>
+                        <div class="col-md-8">
+                            <input type="number" class="form-control" name="minutes" placeholder="Duración en minutos"
+                                min="0" max="600" required>
+                        </div>
+                        <button style="display: none" type="submit">Invisible, sólo para validación</button>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary edit">Guardar cambios</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para mostrar película -->
+    <div class="modal fade" id="movieView" tabindex="-1" aria-labelledby="movieViewLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="movieViewLabel" name="name"/>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row" id="movieView">
+                        <input type="hidden" name="id">
+                        <!-- llenar desde JS -->
+                        <div class="col-md-12">
+                            IMDB:
+                            <br>
+                            <a name="imdb" target="_blank" />
+                        </div>
+                        <br>
+                        <div class="col-md-12">
+                            Director:
+                            <p name="director"/>
+                        </div>
+                        <div class="col-md-12">
+                            Actores:
+                            <p name="actors"/>
+                        </div>
+                        <div class="col-md-6">
+                            Año de estreno:
+                            <p name="year"/>
+                        </div>
+                        <div class="col-md-6">
+                            Duración:
+                            <p name="minutes"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="modal fade" id="addMovie" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
@@ -62,6 +177,57 @@
                             onclick="deleteFormData()">Cancelar</button>
                     </div>
                 </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para dar un rating a una película -->
+    <div class="modal fade" id="movieRate" tabindex="-1" aria-labelledby="movieRateLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="movieRateLabel">Evaluando película</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form class="row" id="movieRateForm">
+                        <input type="hidden" name="id">
+                        <input type="hidden" name="movie">
+                        <input type="hidden" name="user">
+                        <!-- llenar desde JS -->
+                        <div class="col-md-12">
+                            <input type="text" class="form-control" name="labels" placeholder="Etiquetas" required>
+                        </div>
+                        <div class="col-md-6">
+                            <fieldset class="estrellitas">
+                                <label title="Atómico - 5 estrellas">
+                                    <input type="radio" name="rating" value="5" />
+                                </label>
+
+                                <label title="Muy buena - 4 estrellas">
+                                    <input type="radio" name="rating" value="4" />
+                                </label>
+
+                                <label title="Pasable - 3 estrellas">
+                                    <input type="radio" name="rating" value="3" />
+                                </label>
+
+                                <label title="Más bien mala - 2 estrellas">
+                                    <input type="radio" name="rating" value="2" />
+                                </label>
+
+                                <label title="Horrible - 1 estrella">
+                                    <input type="radio" name="rating" value="1" />
+                                </label>
+                            </fieldset>
+                        </div>
+                        <button style="display: none" type="submit">Invisible, sólo para validación</button>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary edit">Guardar cambios</button>
+                </div>
             </div>
         </div>
     </div>
@@ -122,10 +288,55 @@
                     <li class="nav-item">
                         <a onclick="addGroupModal()">Crear grupo</a>
                     </li>
+                    <li class="nav-item" id="helloUser"/>
+                    <li class="nav-item" id="loginItem">
+                        <a>Iniciar sesión</a>
+                    </li>
                 </ul>
             </div>
         </div>
     </nav>
+
+    <!-- container-fluid expande el contenedor para que ocupe todo el espacio disponible -->
+    <div class="container-fluid mt-3" aria-hidden="true">
+        <div class="row">
+            <!-- panel lateral, demostrando acordeones (secciones expansibles) -->
+            <div class="iulist">
+                <div class="d-flex justify-content-center">
+                    <h1 class="titulo mt-3">Peliculas</h1>
+                </div>
+                <div class="row busc">
+                    <div class="col input-group mb-3">
+                        <input type="search" class="form-control" id="movieSearch" placeholder="palabras del título"
+                            aria-describedby="searchMovieLabel">
+                        <span class="input-group-text" id="searchMovieLabel">🔍</span>
+                    </div>
+                </div>
+                <div class="row d-flex align-items-center justify-content-around" id="movies">
+                </div>
+            </div>
+
+            <div class="col-sm-4 iulist" style="display: none;">
+                <h2>Grupos</h2>
+                <div id="groups">
+
+                </div>
+                <div id="addGroup">
+
+                </div>
+            </div>
+
+            <div class="col-sm-4 iulist" style="display: none;">
+                <h2>Usuarios</h2>
+                <div id="users">
+
+                </div>
+                <div id="addUser">
+
+                </div>
+            </div>
+        </div>
+    </div>
 
     <div class="row content" id="content">
         <div id="picture container" class="col-5">
