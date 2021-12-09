@@ -30,14 +30,16 @@ Anteriormente se mostraban de la siguiente forma:
 
 Hemos eliminado varios submenús y añadidos otros ahora se muestran de la siguiente forma:
 
-- Películas
-  - Ver todas las películas
-  - Añadir películas
-- Grupos
-  - Ver grupos
-  - Crear grupo
+- Ver todas las películas
+- Añadir películas
+- Ver grupos
+- Crear grupo
 
 Esto lo hemos hecho debido a que el resto de campos no eran necesarios, ya que se puede acceder a ellos de forma más intuitiva, por ejemplo al estar viendo una película en concreto. 
+
+### Login
+
+Añadido botón para hacer login, mostrando un formulario en el que introducir usuario y contraseña. Si ya has iniciado sesión te muestra `Holi ${nombre}`.
 
 ### Añadir película
 
