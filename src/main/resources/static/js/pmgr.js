@@ -132,7 +132,6 @@ function createMovieItem(movie) {
 }
 
 function createGroupItem(group) {
-    console.log(group);
     let allMembers = group.members.map((id) =>
         `<span class="badge bg-secondary">${Pmgr.resolve(id).username}</span>`
     ).join(" ");
@@ -145,24 +144,29 @@ function createGroupItem(group) {
     ).join(" ");
 
     return `
-    <div class="card">
-    <div class="card-header">
-        <h4 class="mb-0" title="${group.id}">
-            <b class="pcard">${group.name}</b>
-        </h4>
-    </div>
-    <div class="card-body pcard">
-        <div class="row-sm-11">
-            <span class="badge bg-primary">${Pmgr.resolve(group.owner).username}</span>
-            ${allMembers}
-            ${allPending}
+    <div class="card grupo" style="background-color:#000000a1">
+        <div class="card-header">
+            <h4 class="mb-0" title="${group.id}">
+                <b class="pcard nombregrupo">${group.name}</b>
+            </h4>
         </div>
-        <div class="row-sm-1 iucontrol group">
-            <button class="rm" data-id="${group.id}">🗑️</button>
-            <button class="edit" data-id="${group.id}">✏️</button>
+        <div class="card-body pcard">
+            <h6 class="mb-0">
+                <b class="pcard nmiembros">Nº de miembros: ${group.members.length + 1}</b>
+            </h6>
+            <div class="row-sm-11">
+                <span class="badge bg-primary">${Pmgr.resolve(group.owner).username}</span>
+                ${allMembers}
+                ${allPending}
+            </div>
+        </div>              
+
+        <div class="card-footer d-flex justify-content-end mb-2">
+            <div class="iucontrol group d-flex justify-content-end">
+            <button class="bot rm" data-id="${group.id}">🗑️</button>
+            <button class="bot edit" data-id="${group.id}">✏️</button>
+            </div>  
         </div>
-    </div>              
-    </div>
     </div>
 `;
 }

@@ -19,6 +19,35 @@
 </head>
 
 <body class="section-1-bg">
+    <div class="modal fade" id="login" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <form id="loginform">
+                    <div class="modal-header">
+                        <h5 class="modal-title" style="color:black" id="exampleModalLabel">Iniciar Sesión</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"/>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <input type="text" class="form-control" name="username" placeholder="Usuario"
+                                    required>
+                            </div>
+                            <div class="col-md-12">
+                                <input type="password" class="form-control" name="password"
+                                    placeholder="Contraseña" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">Iniciar sesión</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
     <!-- Modal para añadir una pelicula -->
     <div class="modal fade" id="addMovie" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -253,16 +282,20 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
-                        <a href="./peliculas/peliculas.html">Ver películas</a>
+                        <a href="../peliculas/peliculas.html">Ver películas</a>
                     </li>
                     <li class="nav-item">
                         <a onclick="addMovieModal()">Añadir película</a>
                     </li>
                     <li class="nav-item">
-                        <a href="./grupos/grupos.html">Ver grupos</a>
+                        <a href="../grupos/grupos.html">Ver grupos</a>
                     </li>
                     <li class="nav-item">
                         <a onclick="addGroupModal()">Crear grupo</a>
+                    </li>
+                    <li class="nav-item" id="helloUser"/>
+                    <li class="nav-item" id="loginItem">
+                        <a>Iniciar sesión</a>
                     </li>
                 </ul>
             </div>
@@ -273,30 +306,33 @@
     <div class="container-fluid mt-3">
         <div class="row">
             <!-- panel lateral, demostrando acordeones (secciones expansibles) -->
-            <div class="iulist">
+            <div class="col-sm-4 iulist" style="display: none;">
                 <div class="d-flex justify-content-center">
-                    <h1 class="titulo mt-3">Grupos</h1>
+                    <h1 class="titulo mt-3">Peliculas</h1>
                 </div>
                 <div class="row busc">
                     <div class="col input-group mb-3">
                         <input type="search" class="form-control" id="movieSearch" placeholder="palabras del título"
-                            aria-describedby="searchMovieLabel" hidden>
-                        <span class="input-group-text" id="searchMovieLabel" hidden>🔍</span>
+                            aria-describedby="searchMovieLabel">
+                        <span class="input-group-text" id="searchMovieLabel">🔍</span>
                     </div>
                 </div>
-                <div class="row d-flex align-items-center justify-content-around" id="groups">
+                <div class="row d-flex align-items-center justify-content-around" id="movies">
                 </div>
             </div>
 
-            <div class="col-sm-4 iulist" style="display: none;">
-                <h2>Grupos</h2>
-                <div id="groups">
+            <div class="iulist">
+                <div class="d-flex justify-content-center">
+                    <h1 class="titulo mt-3">Grupos</h1>
+                </div>
+                <div class="row d-flex align-items-center justify-content-around" id="groups">
 
                 </div>
                 <div id="addGroup">
 
                 </div>
             </div>
+            
 
             <div class="col-sm-4 iulist" style="display: none;">
                 <h2>Usuarios</h2>
