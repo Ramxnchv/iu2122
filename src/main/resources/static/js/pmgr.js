@@ -613,7 +613,7 @@ const login = (username, password) => {
     * formulario nuevo grupo **/
    const f = document.querySelector("#addGroup form");
    //botón de enviar
-    f.querySelector("button[type='submitG']").addEventListener('click', (e) => {
+    f.querySelector("button[type='submit']").addEventListener('click', (e) => {
         if (f.checkValidity()) {
             e.preventDefault(); // evita que se haga lo normal cuando no hay errores
             nuevoGrupo(f); // añade el grupo según los campos previamente validados
@@ -656,3 +656,14 @@ setTimeout(function() {
     modal.show();
 }, 5000);
 
+function showGroups(){
+    var peliculas = document.getElementById("contenedor_peliculas");
+    var indice = document.getElementById("index-content");
+    var grupos = document.getElementById("contenedor_grupos");
+    var usuarios = document.getElementById("contenedor_usuarios");
+
+    peliculas.style.display = "none";
+    indice.style.display = "none";
+    usuarios.style.display = "none";
+    grupos.style.display = "block";
+}

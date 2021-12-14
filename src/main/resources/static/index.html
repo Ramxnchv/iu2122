@@ -13,6 +13,8 @@
     <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="css/main.css">
     <link rel="icon" href="img/favicon.jpg">
+    <link href="https://fonts.googleapis.com/css2?family=Patua+One&display=swap" rel="stylesheet">
+
 
     <!-- Esto aparece como título de la ventana o pestaña en el navegador: cámbialo -->
     <title>Afinidad de películas</title>
@@ -251,7 +253,7 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="submitG" class="btn btn-primary">Añadir</button>
+                        <button type="submit" class="btn btn-primary">Añadir</button>
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
                             onclick="deleteFormDataGroup()">Cancelar</button>
                     </div>
@@ -275,13 +277,13 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
-                        <a href="./peliculas/peliculas.html">Ver películas</a>
+                        <a onclick="show('peliculas')">Ver películas</a>
                     </li>
                     <li class="nav-item">
                         <a onclick="addMovieModal()">Añadir película</a>
                     </li>
                     <li class="nav-item">
-                        <a href="./grupos/grupos.html">Ver grupos</a>
+                        <a onclick="show('grupos')">Ver grupos</a>
                     </li>
                     <li class="nav-item">
                         <a onclick="addGroupModal()">Crear grupo</a>
@@ -297,12 +299,12 @@
     </nav>
 
     <!-- container-fluid expande el contenedor para que ocupe todo el espacio disponible -->
-    <div class="container-fluid mt-3" aria-hidden="true" style="display:none" id="contenedor_peliculas">
+    <div class="container-fluid mt-3" aria-hidden="true">
         <div class="row">
             <!-- panel lateral, demostrando acordeones (secciones expansibles) -->
-            <div class="iulist">
+            <div class="iulist" style="display: none" id="contenedor_peliculas">
                 <div class="d-flex justify-content-center">
-                    <h1 class="titulo mt-3">Peliculas</h1>
+                    <h1 class="titulo mt-3">Películas</h1>
                 </div>
                 <div class="row busc">
                     <div class="col input-group mb-3">
@@ -315,9 +317,11 @@
                 </div>
             </div>
 
-            <div class="col-sm-4 iulist" style="display: none;">
-                <h2>Grupos</h2>
-                <div id="groups">
+            <div class="iulist" style="display: none" id="contenedor_grupos">
+                <div class="d-flex justify-content-center">
+                    <h1 class="titulo mt-3">Grupos</h1>
+                </div>
+                <div class="row d-flex align-items-center justify-content-around" id="groups">
 
                 </div>
                 <div id="addGroup">
@@ -325,7 +329,7 @@
                 </div>
             </div>
 
-            <div class="col-sm-4 iulist" style="display: none;">
+            <div class="col-sm-4 iulist" style="display: none;" id="contenedor_usuarios">
                 <h2>Usuarios</h2>
                 <div id="users">
 
@@ -349,7 +353,7 @@
         </div>
     </div>
 
-    <footer class="bg-dark text-center text-lg-start">
+    <footer class="bg-dark text-center text-lg-start" >
         <!-- Copyright -->
         <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
             Frontend diseñado por el grupo 3
@@ -377,6 +381,25 @@
         function deleteFormDataGroup() {
             var myForm = document.getElementById('addgroupform')
             myForm.reset()
+        }
+        function show(element){
+            var peliculas = document.getElementById("contenedor_peliculas");
+            var indice = document.getElementById("index-content");
+            var grupos = document.getElementById("contenedor_grupos");
+            var usuarios = document.getElementById("contenedor_usuarios");
+
+            if (element=="peliculas"){
+                peliculas.style.display = "block";
+                indice.style.display = "none";
+                usuarios.style.display = "none";
+                grupos.style.display = "none";
+                foot.style.display = "none";
+            }else if (element=="grupos"){
+                peliculas.style.display = "none";
+                indice.style.display = "none";
+                usuarios.style.display = "none";
+                grupos.style.display = "block";
+            }
         }
     </script>
 
