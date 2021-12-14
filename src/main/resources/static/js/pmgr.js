@@ -157,6 +157,11 @@ function createGroupItem(group) {
             <div class="row-sm-11">
                 <span class="badge bg-primary">${Pmgr.resolve(group.owner).username}</span>
                 ${allMembers}
+            </div>
+            <h6 class="mb-0">
+                <b class="pcard nmiembros">Nº de peticiones: ${group.requests.length} </b>
+            </h6>
+            <div class="row-sm-11">
                 ${allPending}
             </div>
         </div>              
@@ -222,13 +227,15 @@ function nuevaPelicula(formulario) {
 }
 
 function nuevoGrupo(formulario){
-    const group = new Pmgr.group(-1,
+    const group = new Pmgr.Group(-1,
         formulario.querySelector('input[name="name"]').value,
-        formulario.querySelector('input[name="desc"]').value);
+        userId,
+        [],
+        []);
     Pmgr.addGroup(group).then(() => {
         formulario.reset();
         update();
-    })
+    });
 }
 
 /**
@@ -609,7 +616,7 @@ const login = (username, password) => {
     f.querySelector("button[type='submitG']").addEventListener('click', (e) => {
         if (f.checkValidity()) {
             e.preventDefault(); // evita que se haga lo normal cuando no hay errores
-            nuevoGrupo(f); // añade la pelicula según los campos previamente validados
+            nuevoGrupo(f); // añade el grupo según los campos previamente validados
         }
     });
 }
