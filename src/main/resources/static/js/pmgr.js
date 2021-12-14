@@ -508,6 +508,12 @@ const login = (username, password) => {
             userId = Pmgr.state.users.find(u =>  u.username == username).id; 
             update(d);   
             modalLogin.hide();
+            //Dibujamos la sección de películas
+            var peliculas = document.getElementById("contenedor_peliculas");
+            if (peliculas.style.display === "none") {
+                peliculas.style.display = "block";
+            } 
+
         })
         .catch(e => {
             console.log(e, `error ${e.status} en login (revisa la URL: ${e.url}, y verifica que está vivo)`);
@@ -633,3 +639,13 @@ window.Pmgr = Pmgr;
 // ejecuta Pmgr.populate() en una consola para generar datos de prueba en servidor
 // ojo - hace *muchas* llamadas a la API (mira su cabecera para más detalles)
 // Pmgr.populate();
+
+//Función usada para esconder el div de index
+
+setTimeout(function() {
+    $('#index-content').fadeOut('fast');
+    var login = document.getElementById('login');
+    var modal = bootstrap.Modal.getOrCreateInstance(login);
+    modal.show();
+}, 5000);
+

@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Bootstrap CSS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <link rel="stylesheet" href="css/bootstrap-5.1.3.css">
     <link rel="stylesheet" href="css/custom.css">
     <link rel="stylesheet" href="css/index.css">
@@ -21,7 +22,7 @@
     <div class="modal fade" id="login" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
-                <form id="loginform">
+                <form id="loginform" onsubmit="login_handler()">
                     <div class="modal-header">
                         <h5 class="modal-title" style="color:black" id="exampleModalLabel">Iniciar Sesión</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"/>
@@ -298,7 +299,7 @@
     </nav>
 
     <!-- container-fluid expande el contenedor para que ocupe todo el espacio disponible -->
-    <div class="container-fluid mt-3" aria-hidden="true">
+    <div class="container-fluid mt-3" aria-hidden="true" style="display:none" id="contenedor_peliculas">
         <div class="row">
             <!-- panel lateral, demostrando acordeones (secciones expansibles) -->
             <div class="iulist">
@@ -338,7 +339,7 @@
         </div>
     </div>
 
-    <div class="row content" id="content">
+    <div class="row content" id="index-content">
         <div id="picture container" class="col-5">
             <img src="img/pelis2.png" class="img-fluid">
         </div>
