@@ -14,8 +14,6 @@
     <link rel="stylesheet" href="css/main.css">
     <link rel="icon" href="img/favicon.jpg">
     <link href="https://fonts.googleapis.com/css2?family=Patua+One&display=swap" rel="stylesheet">
-
-
     <!-- Esto aparece como título de la ventana o pestaña en el navegador: cámbialo -->
     <title>Afinidad de películas</title>
 </head>
@@ -288,6 +286,9 @@
                     <span class="nav-item" id ="addGroupNav" style="visibility: hidden;">
                         <a onclick="addGroupModal()">Crear grupo</a>
                     </span>
+                    <span class="nav-item" id="showUsersNav" style="visibility: hidden;">
+                        <a onclick="show('users')">Usuarios</a>
+                    </span>
                    
                 </ul>
                     <span class="nav-item ms-auto" id="loginItem">
@@ -329,9 +330,11 @@
                 </div>
             </div>
 
-            <div class="col-sm-4 iulist" style="display: none;" id="contenedor_usuarios">
-                <h2>Usuarios</h2>
-                <div id="users">
+            <div class="iulist" style="display: none;" id="contenedor_usuarios">
+                <div class="d-flex justify-content-center">
+                    <h1 class="titulo mt-3">Usuarios</h1>
+                </div>
+                <div class="row d-flex align-items-center justify-content-around" id="users">
 
                 </div>
                 <div id="addUser">
@@ -416,6 +419,11 @@
                 peliculas.style.display = "none";
                 indice.style.display = "flex";
                 usuarios.style.display = "none";
+                grupos.style.display = "none";
+            }else if (element=="users"){
+                peliculas.style.display = "none";
+                indice.style.display = "none";
+                usuarios.style.display = "block";
                 grupos.style.display = "none";
             }
         }

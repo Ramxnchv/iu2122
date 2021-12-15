@@ -170,6 +170,7 @@ function createGroupItem(group) {
             <div class="iucontrol group d-flex justify-content-end">
             <button class="bot rm" data-id="${group.id}">🗑️</button>
             <button class="bot edit" data-id="${group.id}">✏️</button>
+            <button class="bot request" data-id="${group.id}">➕</button>
             </div>  
         </div>
     </div>
@@ -188,22 +189,24 @@ function createUserItem(user) {
     ).join(" ");
 
     return `
-    <div class="card">
-    <div class="card-header">
-        <h4 class="mb-0" title="${user.id}">
-            <b class="pcard">${user.username}</b>
-        </h4>
-    </div>
-    <div class="card-body pcard">
-        <div class="row-sm-11">
-            ${allGroups}
-            ${allPending}
-        <div>
-        <div class="row-sm-1 iucontrol user">
-            <button class="rm" data-id="${user.id}">🗑️</button>
-            <button class="edit" data-id="${user.id}">✏️</button>
-        </div>        
-    </div>
+    <div class="card usuario" style="background-color:#000000a1">
+        <div class="card-header">
+            <h4 class="mb-0" title="${user.id}">
+                <b class="pcard nombreusuario">${user.username}</b>
+            </h4>
+        </div>
+        <div class="card-body pcard">
+            <div class="row-sm-11">
+                ${allGroups}
+                ${allPending}
+            <div>
+        </div>
+        <div class="card-footer d-flex justify-content-end mb-2">
+            <div class="iucontrol user d-flex justify-content-end">
+                <button class="rm" data-id="${user.id}">🗑️</button>
+                <button class="edit" data-id="${user.id}">✏️</button>   
+            </div>
+        </div>    
     </div>
 `;
 }
@@ -236,6 +239,15 @@ function nuevoGrupo(formulario){
         formulario.reset();
         update();
     });
+}
+
+function nuevaRequest(id){
+    const request = new Pmgr.Request(-1,
+        userId,
+        id,
+        'awaiting_group');
+    console.log(request);
+    Pmgr.addRequest(request).then(update);
 }
 
 /**
@@ -377,6 +389,7 @@ function update() {
         const navGrupos = document.getElementById('showGroupsNav');
         const navAddGroup = document.getElementById('addGroupNav');
         const navAddMovies = document.getElementById('addMovieNav');
+        const navUsers = document.getElementById('showUsersNav');
 
         const islogged = userId !== -1;
 
@@ -388,6 +401,7 @@ function update() {
         navGrupos.style.visibility = islogged ? 'visible' : 'hidden';
         navAddGroup.style.visibility = islogged ? 'visible' : 'hidden';
         navAddMovies.style.visibility = islogged ? 'visible' : 'hidden';
+        navUsers.style.visibility = islogged ? 'visible' : 'hidden';
         loginItem.style.visibility = !islogged ? 'visible' : 'hidden';
 
         // y añadimos manejadores para los eventos de los elementos recién creados
@@ -480,6 +494,9 @@ function update() {
         // botones de borrar grupos
         document.querySelectorAll(".iucontrol.group button.rm").forEach(b =>
             b.addEventListener('click', e => Pmgr.rmGroup(e.target.dataset.id).then(update)));
+        // botones de solicitar unirse a grupo
+        document.querySelectorAll(".iucontrol.group button.request").forEach(b =>
+            b.addEventListener('click', (e) => nuevaRequest(e.target.dataset.id)));
         // botones de borrar usuarios
         document.querySelectorAll(".iucontrol.user button.rm").forEach(b =>
             b.addEventListener('click', e => Pmgr.rmUser(e.target.dataset.id).then(update)));
@@ -643,6 +660,7 @@ document.querySelector("#movieSearch").addEventListener("input", e => {
     });
 })
 
+
 // cosas que exponemos para poder usarlas desde la consola
 window.modalEditMovie = modalEditMovie;
 window.modalViewMovie = modalViewMovie;
@@ -664,3 +682,5 @@ setTimeout(function() {
     var modal = bootstrap.Modal.getOrCreateInstance(login);
     modal.show();
 }, 5000);
+
+
