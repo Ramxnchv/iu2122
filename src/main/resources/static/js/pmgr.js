@@ -405,7 +405,6 @@ function update() {
         const navAddGroup = document.getElementById('addGroupNav');
         const navAddMovies = document.getElementById('addMovieNav');
         const navUsers = document.getElementById('showUsersNav');
-        const navAddUser = document.getElementById('addUserNav');
 
         const islogged = userId !== -1;
 
@@ -413,15 +412,17 @@ function update() {
             helloUser.textContent = `Bienvenido, ${Pmgr.state.name}`;
         }
 
-            helloUser.style.visibility = islogged ? 'visible' : 'hidden';
-            navGrupos.style.visibility = islogged ? 'visible' : 'hidden';
-            navUsers.style.visibility = islogged ? 'visible' : 'hidden';
+            helloUser.style.display = islogged ? 'block' : 'none';
+            navGrupos.style.display = islogged ? 'block' : 'none';
+            navUsers.style.display = islogged ? 'block' : 'none';
+            navAddGroup.style.display = islogged ? 'block' : 'none';
+
         if(userId == 2051){
-            navAddGroup.style.visibility = islogged ? 'visible' : 'hidden';
-            navAddMovies.style.visibility = islogged ? 'visible' : 'hidden';
-            navAddUser.style.visibility = islogged ? 'visible' : 'hidden';
+            
+            navAddMovies.style.display = islogged ? 'block' : 'none';
+            
         }
-        loginItem.style.visibility = !islogged ? 'visible' : 'hidden';
+        loginItem.style.display = !islogged ? 'block' : 'none';
 
         // y añadimos manejadores para los eventos de los elementos recién creados
         document.querySelectorAll(".card.pelicula").forEach(b => {
