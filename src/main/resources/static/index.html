@@ -266,7 +266,7 @@
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
             <!-- nombre del sitio; es un enlace que lleva a la página ppal -->
-            <a class="navbar-brand" href="./index.html">Afinidad de películas</a>
+            <a class="navbar-brand" onclick="show('index')">Afinidad de películas</a>
             <!-- menu hamburguesa si no cabe todo -->
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -276,24 +276,24 @@
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
-                    <li class="nav-item">
+                    <span class="nav-item">
                         <a onclick="show('peliculas')">Ver películas</a>
-                    </li>
-                    <li class="nav-item">
+                    </span>
+                    <span class="nav-item" id="addMovieNav" style="visibility: hidden;">
                         <a onclick="addMovieModal()">Añadir película</a>
-                    </li>
-                    <li class="nav-item">
+                    </span>
+                    <span class="nav-item" id ="showGroupsNav" style="visibility: hidden;">
                         <a onclick="show('grupos')">Ver grupos</a>
-                    </li>
-                    <li class="nav-item">
+                    </span>
+                    <span class="nav-item" id ="addGroupNav" style="visibility: hidden;">
                         <a onclick="addGroupModal()">Crear grupo</a>
-                    </li>
+                    </span>
                    
                 </ul>
-                <span class="nav-item " id="loginItem">
-                    <a>Iniciar sesión</a>
-                </span>
-                <span class="nav-item ms-auto" id="helloUser"></span>
+                    <span class="nav-item ms-auto" id="loginItem">
+                        <a>Iniciar sesión</a>
+                    </span>
+                    <span class="nav-item ms-auto" id="helloUser"></span>
             </div>
         </div>
     </nav>
@@ -338,10 +338,24 @@
 
                 </div>
             </div>
+
+            
+        </div>
+
+        <div class="row content" style="display: flex;" id="index_content">
+            <div id="picture container" class="col-5">
+                <img src="img/pelis2.png" class="img-fluid">
+            </div>
+            <div id="info" class="col-7 ">
+                <h1>Bienvenido a Afinidad de películas</h1>
+                <p>Afinidad de películas es una aplicación diseñada para gestionar películas, con sus respectivas
+                    valoraciones.</br>
+                    Además podrás crear grupos con más usuarios para descubrir nuevas películas.</p>
+            </div>
         </div>
     </div>
 
-    <div class="row content" id="index-content">
+   <!-- <div class="row content" id="index-content">
         <div id="picture container" class="col-5">
             <img src="img/pelis2.png" class="img-fluid">
         </div>
@@ -351,7 +365,7 @@
                 valoraciones.</br>
                 Además podrás crear grupos con más usuarios para descubrir nuevas películas.</p>
         </div>
-    </div>
+    </div>-->
 
     <footer class="bg-dark text-center text-lg-start" >
         <!-- Copyright -->
@@ -384,7 +398,7 @@
         }
         function show(element){
             var peliculas = document.getElementById("contenedor_peliculas");
-            var indice = document.getElementById("index-content");
+            var indice = document.getElementById("index_content");
             var grupos = document.getElementById("contenedor_grupos");
             var usuarios = document.getElementById("contenedor_usuarios");
 
@@ -393,12 +407,16 @@
                 indice.style.display = "none";
                 usuarios.style.display = "none";
                 grupos.style.display = "none";
-                foot.style.display = "none";
             }else if (element=="grupos"){
                 peliculas.style.display = "none";
                 indice.style.display = "none";
                 usuarios.style.display = "none";
                 grupos.style.display = "block";
+            }else if (element=="index"){
+                peliculas.style.display = "none";
+                indice.style.display = "flex";
+                usuarios.style.display = "none";
+                grupos.style.display = "none";
             }
         }
     </script>

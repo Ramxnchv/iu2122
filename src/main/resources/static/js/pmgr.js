@@ -374,11 +374,20 @@ function update() {
 
         const helloUser = document.getElementById('helloUser');
         const loginItem = document.getElementById('loginItem');
+        const navGrupos = document.getElementById('showGroupsNav');
+        const navAddGroup = document.getElementById('addGroupNav');
+        const navAddMovies = document.getElementById('addMovieNav');
+
         const islogged = userId !== -1;
+
         if (islogged) {
-            helloUser.textContent = `Holi ${Pmgr.state.name}`;
+            helloUser.textContent = `Bienvenido, ${Pmgr.state.name}`;
         }
+
         helloUser.style.visibility = islogged ? 'visible' : 'hidden';
+        navGrupos.style.visibility = islogged ? 'visible' : 'hidden';
+        navAddGroup.style.visibility = islogged ? 'visible' : 'hidden';
+        navAddMovies.style.visibility = islogged ? 'visible' : 'hidden';
         loginItem.style.visibility = !islogged ? 'visible' : 'hidden';
 
         // y añadimos manejadores para los eventos de los elementos recién creados
@@ -655,15 +664,3 @@ setTimeout(function() {
     var modal = bootstrap.Modal.getOrCreateInstance(login);
     modal.show();
 }, 5000);
-
-function showGroups(){
-    var peliculas = document.getElementById("contenedor_peliculas");
-    var indice = document.getElementById("index-content");
-    var grupos = document.getElementById("contenedor_grupos");
-    var usuarios = document.getElementById("contenedor_usuarios");
-
-    peliculas.style.display = "none";
-    indice.style.display = "none";
-    usuarios.style.display = "none";
-    grupos.style.display = "block";
-}
