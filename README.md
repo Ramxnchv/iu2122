@@ -14,7 +14,7 @@ Servidor y código de plantilla para una interfaz de gestión de valoraciones de
 
 ### index.html
 
-Esta es la página web principal. En ella se hace un breve resumen sobre la utilidad de la aplicación. 
+Esta es la página web principal. En ella se hace un breve resumen sobre la utilidad de la aplicación. Se ha creado un timer para que cuando pase un tiempo, se muestre automáticamente el modal del login.
 
 ### Header
 
@@ -43,23 +43,31 @@ Añadido botón para hacer login, mostrando un formulario en el que introducir u
 
 ### Añadir película
 
-Ahora las películas se añaden a través de un modal, es decir, no hay una página en concreto para añairla. Al modal se puede acceder a través del header. 
+Ahora las películas se añaden a través de un modal, es decir, no hay una página en concreto para añairla. Al modal se puede acceder a través del header. Se ha de estar logueado y ser ADMIN para poder crear una película.
 
 ### Crear grupo
 
-Ahora los grupos se crean a través de un modal, es decir, no hay una página en concreto para crearlos. Al modal se puede acceder a través del header. 
+Ahora los grupos se crean a través de un modal, es decir, no hay una página en concreto para crearlos. Al modal se puede acceder a través del header. Se ha de estar logueado en la página para poder crear un grupo.
 
-### Películas.html
+### Crear usuario
+
+Ahora los usuarios se crean a través de un modal, es decir, no hay una página en concreto para crearlos. Al modal se puede acceder a través del header. Se puede crear un usuario sin estar logueado en la página.
+
+### Ver películas
 
 Hemos cambiado la forma en la que se muestran las películas. Ahora se muestran mediante tarjetas. Esto favorece que el usuario vea la información más claramente.
 
-### Grupos.html
+### Ver grupos
 
-Página donde aparecen listados los grupos
+Página donde aparecen listados los grupos, junto con sus usuarios, y cantidad de requests.
 
 ### Ver película
 
 Al hacer clic sobre una película, abre un modal con la información de la misma.
+
+### Ver usuarios
+
+Página donde aparecen listados todos los usuarios.
 
 ## Práctica
 
