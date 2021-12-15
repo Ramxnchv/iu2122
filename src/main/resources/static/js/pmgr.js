@@ -413,12 +413,14 @@ function update() {
             helloUser.textContent = `Bienvenido, ${Pmgr.state.name}`;
         }
 
-        helloUser.style.visibility = islogged ? 'visible' : 'hidden';
-        navGrupos.style.visibility = islogged ? 'visible' : 'hidden';
-        navAddGroup.style.visibility = islogged ? 'visible' : 'hidden';
-        navAddMovies.style.visibility = islogged ? 'visible' : 'hidden';
-        navUsers.style.visibility = islogged ? 'visible' : 'hidden';
-        navAddUser.style.visibility = islogged ? 'visible' : 'hidden';
+            helloUser.style.visibility = islogged ? 'visible' : 'hidden';
+            navGrupos.style.visibility = islogged ? 'visible' : 'hidden';
+            navUsers.style.visibility = islogged ? 'visible' : 'hidden';
+        if(userId == 2051){
+            navAddGroup.style.visibility = islogged ? 'visible' : 'hidden';
+            navAddMovies.style.visibility = islogged ? 'visible' : 'hidden';
+            navAddUser.style.visibility = islogged ? 'visible' : 'hidden';
+        }
         loginItem.style.visibility = !islogged ? 'visible' : 'hidden';
 
         // y añadimos manejadores para los eventos de los elementos recién creados
