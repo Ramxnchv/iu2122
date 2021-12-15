@@ -260,6 +260,34 @@
         </div>
     </div>
 
+    <div class="modal fade" id="addUser" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <form id="adduserform">
+                    <div class="modal-header">
+                        <h5 class="modal-title" style="color:black" id="exampleModalLabel">Crear Usuario</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+                            onclick="deleteFormDataUser()"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" id="f1" name="name" placeholder="Nombre"
+                                    required>
+                                <input type="password" class="form-control" id="f2" name="pass" placeholder="Contraseña" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">Añadir</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
+                            onclick="deleteFormDataUser()">Cancelar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
     <!-- barra de navegación -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
@@ -288,6 +316,9 @@
                     </span>
                     <span class="nav-item" id="showUsersNav" style="visibility: hidden;">
                         <a onclick="show('users')">Usuarios</a>
+                    </span>
+                    <span class="nav-item" id ="addUserNav" style="visibility: hidden;">
+                        <a onclick="addUserModal()">Crear usuario</a>
                     </span>
                    
                 </ul>
@@ -397,6 +428,15 @@
         }
         function deleteFormDataGroup() {
             var myForm = document.getElementById('addgroupform')
+            myForm.reset()
+        }
+        function addUserModal() {
+            var myModalEl = document.getElementById('addUser')
+            var modal = bootstrap.Modal.getOrCreateInstance(myModalEl)
+            modal.show();
+        }
+        function deleteFormDataUser() {
+            var myForm = document.getElementById('adduserform')
             myForm.reset()
         }
         function show(element){

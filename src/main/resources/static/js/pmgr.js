@@ -241,6 +241,21 @@ function nuevoGrupo(formulario){
     });
 }
 
+function nuevoUsuario(formulario){
+    const user = new Pmgr.User(-1,
+        formulario.querySelector('input[name="name"]').value,
+        formulario.querySelector('input[name="pass"]').value,
+        'USER',
+        [],
+        [],
+        [])
+    Pmgr.addUser(user).then(() =>{
+        formulario.reset();
+        update();
+    })
+
+}
+
 function nuevaRequest(id){
     const request = new Pmgr.Request(-1,
         userId,
@@ -390,6 +405,7 @@ function update() {
         const navAddGroup = document.getElementById('addGroupNav');
         const navAddMovies = document.getElementById('addMovieNav');
         const navUsers = document.getElementById('showUsersNav');
+        const navAddUser = document.getElementById('addUserNav');
 
         const islogged = userId !== -1;
 
@@ -402,6 +418,7 @@ function update() {
         navAddGroup.style.visibility = islogged ? 'visible' : 'hidden';
         navAddMovies.style.visibility = islogged ? 'visible' : 'hidden';
         navUsers.style.visibility = islogged ? 'visible' : 'hidden';
+        navAddUser.style.visibility = islogged ? 'visible' : 'hidden';
         loginItem.style.visibility = !islogged ? 'visible' : 'hidden';
 
         // y añadimos manejadores para los eventos de los elementos recién creados
@@ -645,6 +662,16 @@ const login = (username, password) => {
             nuevoGrupo(f); // añade el grupo según los campos previamente validados
         }
     });
+}{
+    const f = document.querySelector("#addUser form");
+    //botón de enviar
+    f.querySelector("button[type='submit']").addEventListener('click', (e) => {
+        if (f.checkValidity()) {
+            e.preventDefault(); // evita que se haga lo normal cuando no hay errores
+            nuevoUsuario(f); // añade el grupo según los campos previamente validados
+        }
+    });
+    
 }
 
 /**
